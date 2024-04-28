@@ -545,7 +545,6 @@ public class Frame extends JFrame {
 		generate.setBackground(Color.white);
 		generate.setForeground(blueC);
 		generate.setFont(myFontS);
-		generate.setBorder(new LineBorder(blueC, 2, true));
 		generate.setBounds(1400 + changelogTB.getWidth() / 2 - generate.getPreferredSize().width / 2 - 25, 800,
 				generate.getPreferredSize().width + 50, 50);
 		generate.addActionListener(new ActionListener() {
@@ -571,6 +570,26 @@ public class Frame extends JFrame {
 			}
 		});
 		panel.add(generate);
+
+		JButton donate = new JButton();
+		donate.setFont(myFontXS);
+		donate.setBounds(width / 2 - 90, height - 90, 180, 40);
+		donate.setHorizontalAlignment(0);
+		donate.setBackground(new Color(0xcc3f3f));
+		donate.setText("<html><a href=\"https://paypal.me/mhmdsabdlh\">"
+				+ "<FONT color=\"#ffffff\">Buy me a Coffee :)</FONT>" + "</a></html>");
+		donate.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		donate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("https://paypal.me/mhmdsabdlh"));
+				} catch (URISyntaxException | IOException ex) {
+					// It looks like there's a problem
+				}
+			}
+		});
+		panel.add(donate);
 
 		// Add everything to scrollpane
 		JScrollPane scrPane = new JScrollPane(panel);
