@@ -16,5 +16,6 @@ Features:
 
 ![cover](https://github.com/MhmdSAbdlh/SileoGen/assets/22322594/fed6837e-943a-43f8-b245-dcb2b1e60ec3)
 
-Thanks to ![link](https://twitter.com/maxbridgland)maxbridgland for the idea
-Created and Designed By MhmdSAbdlh
+Thanks to [maxbridgland](https://twitter.com/maxbridgland) for the idea
+
+Created and Designed By [MhmdSAbdlh](https://twitter.com/mhmdsabdlh)
