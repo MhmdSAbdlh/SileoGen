@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.net.URL;
@@ -12,9 +13,13 @@ import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import com.formdev.flatlaf.ui.FlatRoundBorder;
 
+import raven.message.SocialMedia;
 import raven.toast.Notifications;
 
 public class Frame extends JFrame {
@@ -27,6 +32,12 @@ public class Frame extends JFrame {
 	static Border border = new LineBorder(Color.white, 2);
 	private URL header = getClass().getResource("header.png");
 	private ImageIcon headerI = new ImageIcon(header);
+	private URL creator = getClass().getResource("creator.png");
+	private ImageIcon creatorI = new ImageIcon(creator);
+	private URL exit = getClass().getResource("exit.png");
+	private ImageIcon exitI = new ImageIcon(exit);
+	private URL introP = getClass().getResource("intro.png");
+	private ImageIcon introI = new ImageIcon(introP);
 	private String dayN = new SimpleDateFormat("dd").format(Calendar.getInstance().getTime());
 	private String monthN = new SimpleDateFormat("M").format(Calendar.getInstance().getTime());
 	private JLabel photo = new JLabel();
@@ -42,7 +53,7 @@ public class Frame extends JFrame {
 		this.setAlwaysOnTop(false);
 		this.setSize(width, height);
 		this.setResizable(false);
-		this.setTitle("Sileo 1.0");
+		this.setTitle("Sileo 1.6");
 		this.getContentPane().setBackground(blueC);
 		this.setIconImage(new ImageIcon(header).getImage());
 
@@ -62,7 +73,7 @@ public class Frame extends JFrame {
 		panel.add(titleT);
 		JLabel titleST = new JLabel();
 		titleST.setText(
-				"<html>Here you can easily generate and export Native Sileo Depictions! This tool was created by <a style=\"color:#cc3f3f;\">MhmdSAblh</a>"
+				"<html>Here you can easily generate and export Native Sileo Depictions! This tool was created by <a style=\"color:#cc3f3f;\">MhmdSAbdlh</a>"
 						+ "<br><br>The * means that this case is mandatory"
 						+ "<br><br>You can a footer websites but press FOOTER button</html>");
 		titleST.setFont(myFontS);
@@ -114,12 +125,6 @@ public class Frame extends JFrame {
 		longDescTF.setCaretColor(Color.white);
 		longDescTF.setToolTipText("long description about the tweak, ## You can use Markdown here ##");
 		longDescTF.setFont(myFontXS);
-		longDescTF.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent ke) {
-				if ((ke.getKeyCode() == KeyEvent.VK_W) && ((ke.getModifiers() & InputEvent.CTRL_MASK) != 0))
-					System.exit(0);
-			}
-		});
 		scrollV.setBounds(300, 530, 400, 200);
 		panel.add(scrollV);
 
@@ -173,8 +178,8 @@ public class Frame extends JFrame {
 		maintenerL.setBounds(800, 610, maintenerL.getPreferredSize().width, 50);
 		panel.add(maintenerL);
 		JTextField maintainerTF = new RoundJTextField(500);
-		FocusL(maintainerTF, "Maintener name");
-		maintainerTF.setText("Maintener name");
+		FocusL(maintainerTF, "Maintainer name");
+		maintainerTF.setText("Maintainer name");
 		maintainerTF.setToolTipText("MhmdSAbdlh");
 		maintainerTF.setFont(myFontXS);
 		maintainerTF.setHorizontalAlignment(0);
@@ -265,9 +270,6 @@ public class Frame extends JFrame {
 					site1.setText("");
 					site2.setText("");
 					site3.setText("");
-					site1TF.setText("");
-					site2TF.setText("");
-					site3TF.setText("");
 
 				} else {
 					siteOnOff.setText("HIDE FOOTER");
@@ -364,6 +366,180 @@ public class Frame extends JFrame {
 		});
 		panel.add(scrollV3);
 
+		/* Action Lostener */
+		headerTF.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					headerTF.setNextFocusableComponent(screenshotTF);
+					headerTF.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					headerTF.setNextFocusableComponent(changelogThird);
+					headerTF.nextFocus();
+				}
+			}
+		});
+		screenshotTF.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					screenshotTF.setNextFocusableComponent(longDescTF);
+					screenshotTF.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					screenshotTF.setNextFocusableComponent(headerTF);
+					screenshotTF.nextFocus();
+				}
+			}
+		});
+		longDescTF.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent ke) {
+				if ((ke.getKeyCode() == KeyEvent.VK_W) && ((ke.getModifiers() & InputEvent.CTRL_MASK) != 0))
+					System.exit(0);
+				else if (ke.getKeyCode() == KeyEvent.VK_UP) {
+					longDescTF.setNextFocusableComponent(screenshotTF);
+					longDescTF.nextFocus();
+				} else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
+					longDescTF.setNextFocusableComponent(versionTF);
+					longDescTF.nextFocus();
+				}
+			}
+		});
+
+		versionTF.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					versionTF.setNextFocusableComponent(priceTF);
+					versionTF.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					versionTF.setNextFocusableComponent(longDescTF);
+					versionTF.nextFocus();
+				}
+			}
+		});
+		priceTF.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					priceTF.setNextFocusableComponent(packageAuthorTF);
+					priceTF.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					priceTF.setNextFocusableComponent(versionTF);
+					priceTF.nextFocus();
+				}
+			}
+		});
+		packageAuthorTF.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					packageAuthorTF.setNextFocusableComponent(maintainerTF);
+					packageAuthorTF.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					packageAuthorTF.setNextFocusableComponent(priceTF);
+					packageAuthorTF.nextFocus();
+				}
+			}
+		});
+		maintainerTF.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					maintainerTF.setNextFocusableComponent(versionFirst);
+					maintainerTF.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					maintainerTF.setNextFocusableComponent(packageAuthorTF);
+					maintainerTF.nextFocus();
+				}
+			}
+		});
+
+		versionFirst.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					versionFirst.setNextFocusableComponent(changelogFirst);
+					versionFirst.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					versionFirst.setNextFocusableComponent(maintainerTF);
+					versionFirst.nextFocus();
+				}
+			}
+		});
+		versionSecond.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					versionSecond.setNextFocusableComponent(changelogSecond);
+					versionSecond.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					versionSecond.setNextFocusableComponent(changelogFirst);
+					versionSecond.nextFocus();
+				}
+			}
+		});
+		versionThird.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					versionThird.setNextFocusableComponent(changelogThird);
+					versionThird.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					versionThird.setNextFocusableComponent(changelogSecond);
+					versionThird.nextFocus();
+				}
+			}
+		});
+
+		changelogFirst.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					changelogFirst.setNextFocusableComponent(versionSecond);
+					changelogFirst.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					changelogFirst.setNextFocusableComponent(versionFirst);
+					changelogFirst.nextFocus();
+				}
+			}
+		});
+		changelogSecond.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					changelogSecond.setNextFocusableComponent(versionThird);
+					changelogSecond.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					changelogSecond.setNextFocusableComponent(versionSecond);
+					changelogSecond.nextFocus();
+				}
+			}
+		});
+		changelogThird.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					changelogThird.setNextFocusableComponent(headerTF);
+					changelogThird.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					changelogThird.setNextFocusableComponent(versionThird);
+					changelogThird.nextFocus();
+				}
+			}
+		});
+
 		// generate button
 		JButton generate = new JButton("GENERATE");
 		generate.setBackground(Color.white);
@@ -396,12 +572,37 @@ public class Frame extends JFrame {
 		});
 		panel.add(generate);
 
+		// Add everything to scrollpane
 		JScrollPane scrPane = new JScrollPane(panel);
 		scrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-
 		panel.setPreferredSize(new Dimension(250, generate.getY()));
 		this.getContentPane().add(scrPane);
 
+		// MenuBar
+		JMenuBar mb = new JMenuBar();
+		JMenu file = new JMenu("FILE");
+		JMenuItem exit = new JMenuItem("EXIT");
+		JMenuItem creator = new JMenuItem("ABOUT");
+		JMenuItem introM = new JMenuItem("INTRO");
+		introM.setIcon(new ImageIcon(getScaledImage(introI.getImage(), 35, 35)));
+		creator.addActionListener(e -> {
+			SocialMedia socialMedia = new SocialMedia(this);
+			socialMedia.setLinks("https://www.youtube.com/channel/UCzuTm6D0YasEDrVtIlvwjag",
+					"https://github.com/MhmdSAbdlh", "https://www.facebook.com/mhmdsabdlh",
+					"https://mhmdsabdlh.github.io/", "https://www.instagram.com/mhmdsabdlh/",
+					"https://twitter.com/MhmdSAbdlh/");
+			socialMedia.showMessage("Created and designed by MhmdSAbdlh ©");
+		});
+		creator.setIcon(new ImageIcon(getScaledImage(creatorI.getImage(), 35, 35)));
+		introM.addActionListener(e -> openYouTubeVideo("q1WJ50iktmQ"));
+		exit.addActionListener(e -> System.exit(0));
+		exit.setIcon(new ImageIcon(getScaledImage(exitI.getImage(), 35, 35)));
+		file.add(introM);
+		file.add(creator);
+		file.add(exit);
+		mb.add(file);
+
+		this.setJMenuBar(mb);
 		this.getRootPane().setDefaultButton(generate);
 		this.setVisible(true);
 
@@ -462,21 +663,64 @@ public class Frame extends JFrame {
 		});
 	}
 
+	// Method to fade the background color of a component
+	private static void fadeColor(Component component, Color startColor, Color endColor, int duration) {
+		Timer timer = new Timer(30, new ActionListener() {
+			private long startTime = -1;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (startTime < 0) {
+					startTime = System.currentTimeMillis();
+				}
+				long now = System.currentTimeMillis();
+				long elapsed = now - startTime;
+				if (elapsed >= duration) {
+					((Timer) e.getSource()).stop();
+					component.setBackground(endColor);
+				} else {
+					float fraction = (float) elapsed / duration;
+					int red = (int) (startColor.getRed() + fraction * (endColor.getRed() - startColor.getRed()));
+					int green = (int) (startColor.getGreen()
+							+ fraction * (endColor.getGreen() - startColor.getGreen()));
+					int blue = (int) (startColor.getBlue() + fraction * (endColor.getBlue() - startColor.getBlue()));
+					component.setBackground(new Color(red, green, blue));
+				}
+			}
+		});
+		timer.start();
+	}
+
 	private void json(JTextField header, JTextField screenshot, JTextArea long_desc, JTextField version,
 			JTextField priceTF, JTextField maintener, JTextField author, JToggleButton siteOnOff, JTextField site1,
 			JTextField site2, JTextField site3, JTextField version1, JTextField version2, JTextField version3,
 			JTextArea changelog1, JTextArea changelog2, JTextArea changelog3) {
 
-		if (long_desc.getText().isBlank() || version.getText().isBlank() || priceTF.getText().isBlank()
-				|| author.getText().isBlank()) {
-			Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.CENTER, 2000,
+		if (long_desc.getText().isBlank() || version.getText().isBlank()
+				|| version.getText().equalsIgnoreCase("Version number") || priceTF.getText().isBlank()
+				|| priceTF.getText().equalsIgnoreCase("Price") || author.getText().isBlank()
+				|| author.getText().equalsIgnoreCase("Author name")) {
+			Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, 2000,
 					"YOU NEED TO TYPE IN THE MANDATORY CASES!");
+			if (long_desc.getText().isBlank()) {
+				fadeColor(long_desc, blueC, Color.RED, 600);
+				fadeColor(long_desc, Color.RED, blueC, 600);
+			} else if (version.getText().isBlank() || version.getText().equalsIgnoreCase("Version number")) {
+				fadeColor(version, blueC, Color.RED, 600);
+				fadeColor(version, Color.RED, blueC, 600);
+			} else if (priceTF.getText().isBlank() || priceTF.getText().equalsIgnoreCase("Price")) {
+				fadeColor(priceTF, blueC, Color.RED, 600);
+				fadeColor(priceTF, Color.RED, blueC, 600);
+			} else if (author.getText().isBlank() || author.getText().equalsIgnoreCase("Author name")) {
+				fadeColor(author, blueC, Color.RED, 600);
+				fadeColor(author, Color.RED, blueC, 600);
+			}
 		} else {
 			JLabel json = new JLabel();
 			/* Screenshots */
 			java.util.List<String> screenshotosList = new ArrayList<String>();
 			String screenString = "                {\r\n" + "                    \"screenshots\": [\r\n";
-			if (!screenshot.getText().isBlank()) {
+			if (!screenshot.getText().isBlank() && !screenshot.getText().equalsIgnoreCase("Links for screenshots")) {
 				screenshotosList = Arrays.asList(screenshot.getText().split(","));
 				String temp[] = new String[screenshotosList.size()];
 				for (int i = 0; i < screenshotosList.size(); i++) {
@@ -532,32 +776,64 @@ public class Frame extends JFrame {
 					+ "                    \"title\": \"Developer\"\r\n" + "                },\r\n";
 
 			/* Maintainer */
-			String maintainerText = maintener.getText().isBlank() ? ""
-					: "                {\r\n" + "                    \"text\": \"" + maintener.getText() + "\",\r\n"
-							+ "                    \"class\": \"DepictionTableTextView\",\r\n"
-							+ "                    \"title\": \"Maintainer\"\r\n" + "                },\r\n";
+			String maintainerText = (maintener.getText().isBlank()
+					|| maintener.getText().equalsIgnoreCase("Maintainer name"))
+							? ""
+							: "                {\r\n" + "                    \"text\": \"" + maintener.getText()
+									+ "\",\r\n" + "                    \"class\": \"DepictionTableTextView\",\r\n"
+									+ "                    \"title\": \"Maintainer\"\r\n" + "                },\r\n";
 
 			/* Footer */
-			String footerText = siteOnOff.isSelected() ? ""
-					: ",\r\n				{\r\n" + "					\"class\": \"DepictionStackView\",\r\n"
-							+ "					\"views\": [\r\n" + "						{\r\n"
-							+ "							\"class\": \"DepictionTableButtonView\",\r\n"
-							+ "							\"title\": \"Website\",\r\n"
-							+ "							\"action\": \"" + site1.getText() + "\",\r\n"
-							+ "							\"openExternal\": false\r\n" + "						},\r\n"
-							+ "						{\r\n"
-							+ "							\"class\": \"DepictionTableButtonView\",\r\n"
-							+ "							\"title\": \"Twitter(X)\",\r\n"
-							+ "							\"action\": \"" + site2.getText() + "\",\r\n"
-							+ "							\"openExternal\": false\r\n" + "						},\r\n"
-							+ "						{\r\n"
-							+ "							\"class\": \"DepictionTableButtonView\",\r\n"
-							+ "							\"title\": \"Github Repos\",\r\n"
-							+ "							\"action\": \"" + site3.getText() + "\",\r\n"
-							+ "							\"openExternal\": false\r\n" + "						}\r\n"
-							+ "					]\r\n" + "				},\r\n" + "				{\r\n"
-							+ "					\"class\": \"DepictionSpacerView\",\r\n"
-							+ "					\"spacing\": 16\r\n" + "				}";
+			String footerText = (siteOnOff.isSelected()
+					|| ((site1.getText().isBlank() || site1.getText().equalsIgnoreCase("URL"))
+							&& (site2.getText().isBlank() || site2.getText().equalsIgnoreCase("URL"))
+							&& (site3.getText().isBlank() || site3.getText().equalsIgnoreCase("URL"))))
+									? ""
+									: ",\r\n				{\r\n"
+											+ "					\"class\": \"DepictionStackView\",\r\n"
+											+ "					\"views\": [\r\n"
+											// Check site one if exists
+											+ ((site1.getText().isBlank() || site1.getText().equalsIgnoreCase("URL"))
+													? ""
+													: "						{\r\n"
+															+ "							\"class\": \"DepictionTableButtonView\",\r\n"
+															+ "							\"title\": \"Website\",\r\n"
+															+ "							\"action\": \""
+															+ site1.getText() + "\",\r\n"
+															+ "							\"openExternal\": false\r\n"
+															+ "						}"
+															+ (((site2.getText().isBlank()
+																	|| site2.getText().equalsIgnoreCase("URL"))
+																	&& (site3.getText().isBlank()
+																			|| site3.getText().equalsIgnoreCase("URL")))
+																					? ""
+																					: ",\r\n"))
+											// Check site 2
+											+ ((site2.getText().isBlank() || site2.getText().equalsIgnoreCase("URL"))
+													? ""
+													: "						{\r\n"
+															+ "							\"class\": \"DepictionTableButtonView\",\r\n"
+															+ "							\"title\": \"Twitter(X)\",\r\n"
+															+ "							\"action\": \""
+															+ site2.getText() + "\",\r\n"
+															+ "							\"openExternal\": false\r\n"
+															+ "						}"
+															+ ((site3.getText().isBlank()
+																	|| site3.getText().equalsIgnoreCase("URL")) ? ""
+																			: ",\r\n"))
+											+ ((site3.getText().isBlank() || site3.getText().equalsIgnoreCase("URL"))
+													? ""
+													: "						{\r\n"
+															+ "							\"class\": \"DepictionTableButtonView\",\r\n"
+															+ "							\"title\": \"Github Repos\",\r\n"
+															+ "							\"action\": \""
+															+ site3.getText() + "\",\r\n"
+															+ "							\"openExternal\": false\r\n"
+															+ "						}")
+											+ "\r\n" + "					]\r\n" + "				},\r\n"
+											+ "				{\r\n"
+											+ "					\"class\": \"DepictionSpacerView\",\r\n"
+											+ "					\"spacing\": 16\r\n" + "				}";
 
 			String fixPartenCL1 = changelog1.getText().replaceAll("\"", "\\\\\"");
 			String fixPartenCL2 = changelog2.getText().replaceAll("\"", "\\\\\"");
@@ -637,6 +913,26 @@ public class Frame extends JFrame {
 				Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.CENTER, 2000,
 						"Save operation canceled by user.");
 			}
+		}
+	}
+
+	private Image getScaledImage(Image srcImg, int w, int h) {
+		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = resizedImg.createGraphics();
+
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.drawImage(srcImg, 0, 0, w, h, null);
+		g2.dispose();
+
+		return resizedImg;
+	}
+
+	private static void openYouTubeVideo(String videoId) {
+		String url = "https://www.youtube.com/watch?v=" + videoId;
+		try {
+			Desktop.getDesktop().browse(new URI(url));
+		} catch (IOException | URISyntaxException e) {
+			e.printStackTrace();
 		}
 	}
 
