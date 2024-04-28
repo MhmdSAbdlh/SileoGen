@@ -397,9 +397,9 @@ public class Frame extends JFrame {
 		panel.add(generate);
 
 		JScrollPane scrPane = new JScrollPane(panel);
-		scrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-		panel.setPreferredSize(new Dimension(250, generate.getY() + generate.getWidth() + 100));
+		panel.setPreferredSize(new Dimension(250, generate.getY()));
 		this.getContentPane().add(scrPane);
 
 		this.getRootPane().setDefaultButton(generate);
@@ -442,60 +442,6 @@ public class Frame extends JFrame {
 			}
 			return shape.contains(x, y);
 		}
-	}
-
-	public class RoundTextArea extends JTextArea {
-
-		private int radius;
-
-		public RoundTextArea() {
-			super(10, 20);
-			setOpaque(false);
-			setBorder(null);
-			setRadius(20);
-			setBackground(blueC);
-			setCaretColor(Color.white);
-			addKeyListener(new KeyAdapter() {// Escape to close
-				@Override
-				public void keyPressed(KeyEvent ke) {
-					if ((ke.getKeyCode() == KeyEvent.VK_W) && ((ke.getModifiers() & InputEvent.CTRL_MASK) != 0))
-						System.exit(0);
-				}
-			});
-		}
-
-		@Override
-		protected void paintComponent(Graphics g) {
-			Graphics2D g2 = (Graphics2D) g.create();
-			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-			g2.setColor(getBackground());
-			g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, getRadius(), getRadius());
-			super.paintComponent(g);
-		}
-
-		@Override
-		protected void paintBorder(Graphics g) {
-			Graphics2D g2 = (Graphics2D) g.create();
-			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-			g2.setColor(getForeground());
-			g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, getRadius(), getRadius());
-		}
-
-		public void setRadius(int radius) {
-			this.radius = radius;
-			repaint();
-		}
-
-		public int getRadius() {
-			return radius;
-		}
-
-		@Override
-		public Insets getInsets() {
-			int value = getRadius() / 2;
-			return new Insets(value, value, value, value);
-		}
-
 	}
 
 	private void FocusL(JTextField tf, String msg) {
@@ -692,11 +638,6 @@ public class Frame extends JFrame {
 						"Save operation canceled by user.");
 			}
 		}
-	}
-
-	static void savedCorrectly(String message, int duration) {
-		Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, duration,
-				message);
 	}
 
 }
