@@ -53,7 +53,7 @@ public class Frame extends JFrame {
 		this.setAlwaysOnTop(false);
 		this.setSize(width, height);
 		this.setResizable(false);
-		this.setTitle("Sileo 1.6");
+		this.setTitle("Sileo 2.0");
 		this.getContentPane().setBackground(blueC);
 		this.setIconImage(new ImageIcon(header).getImage());
 
@@ -75,10 +75,12 @@ public class Frame extends JFrame {
 		titleST.setText(
 				"<html>Here you can easily generate and export Native Sileo Depictions! This tool was created by <a style=\"color:#cc3f3f;\">MhmdSAbdlh</a>"
 						+ "<br><br>The * means that this case is mandatory"
-						+ "<br><br>You can a footer websites but press FOOTER button</html>");
+						+ "<br><br>You can a footer websites but press FOOTER button"
+						+ "<br><br>When you put the cursor on the text cases it shows you a hint of what to write"
+						+ "</html>");
 		titleST.setFont(myFontS);
 		titleST.setForeground(Color.white);
-		titleST.setBounds(350, 120, titleST.getPreferredSize().width, 100);
+		titleST.setBounds(350, 110, titleST.getPreferredSize().width, titleST.getPreferredSize().height);
 		panel.add(titleST);
 
 		/* part left */
@@ -133,7 +135,7 @@ public class Frame extends JFrame {
 		JLabel versionN = new JLabel("VERSION*");
 		versionN.setFont(myFontS);
 		versionN.setForeground(Color.white);
-		versionN.setBounds(800, 370, versionN.getPreferredSize().width, 50);
+		versionN.setBounds(800, 350, versionN.getPreferredSize().width, 50);
 		panel.add(versionN);
 		JTextField versionTF = new RoundJTextField(500);
 		FocusL(versionTF, "Version number");
@@ -141,13 +143,13 @@ public class Frame extends JFrame {
 		versionTF.setToolTipText("1.0.0");
 		versionTF.setFont(myFontXS);
 		versionTF.setHorizontalAlignment(0);
-		versionTF.setBounds(1000, 370, 200, 50);
+		versionTF.setBounds(970, 350, 200, 50);
 		panel.add(versionTF);
 		/* Price */
 		JLabel priceL = new JLabel("PRICE*");
 		priceL.setFont(myFontS);
 		priceL.setForeground(Color.white);
-		priceL.setBounds(800, 450, priceL.getPreferredSize().width, 50);
+		priceL.setBounds(800, 420, priceL.getPreferredSize().width, 50);
 		panel.add(priceL);
 		JTextField priceTF = new RoundJTextField(500);
 		FocusL(priceTF, "Price");
@@ -155,13 +157,13 @@ public class Frame extends JFrame {
 		priceTF.setToolTipText("U$5");
 		priceTF.setFont(myFontXS);
 		priceTF.setHorizontalAlignment(0);
-		priceTF.setBounds(1000, 450, 200, 50);
+		priceTF.setBounds(970, 420, 200, 50);
 		panel.add(priceTF);
 		/* Author */
 		JLabel packageAuthor = new JLabel("AUTHOR*");
 		packageAuthor.setFont(myFontS);
 		packageAuthor.setForeground(Color.white);
-		packageAuthor.setBounds(800, 530, packageAuthor.getPreferredSize().width, 50);
+		packageAuthor.setBounds(800, 490, packageAuthor.getPreferredSize().width, 50);
 		panel.add(packageAuthor);
 		JTextField packageAuthorTF = new RoundJTextField(500);
 		FocusL(packageAuthorTF, "Author name");
@@ -169,13 +171,27 @@ public class Frame extends JFrame {
 		packageAuthorTF.setToolTipText("Mhmd Abdlh");
 		packageAuthorTF.setFont(myFontXS);
 		packageAuthorTF.setHorizontalAlignment(0);
-		packageAuthorTF.setBounds(1000, 530, 200, 50);
+		packageAuthorTF.setBounds(970, 490, 200, 50);
 		panel.add(packageAuthorTF);
+		/* Compatibility */
+		JLabel compatibility = new JLabel("COMPATIBILITY*");
+		compatibility.setFont(myFontS);
+		compatibility.setForeground(Color.white);
+		compatibility.setBounds(800, 560, compatibility.getPreferredSize().width, 50);
+		panel.add(compatibility);
+		JTextField compatibilityTF = new RoundJTextField(500);
+		FocusL(compatibilityTF, "Compatibility");
+		compatibilityTF.setText("Compatibility");
+		compatibilityTF.setToolTipText("14.0 - 17.0");
+		compatibilityTF.setFont(myFontXS);
+		compatibilityTF.setHorizontalAlignment(0);
+		compatibilityTF.setBounds(970, 560, 200, 50);
+		panel.add(compatibilityTF);
 		/* Maintainer */
 		JLabel maintenerL = new JLabel("MAINTAINER");
 		maintenerL.setFont(myFontS);
 		maintenerL.setForeground(Color.white);
-		maintenerL.setBounds(800, 610, maintenerL.getPreferredSize().width, 50);
+		maintenerL.setBounds(800, 630, maintenerL.getPreferredSize().width, 50);
 		panel.add(maintenerL);
 		JTextField maintainerTF = new RoundJTextField(500);
 		FocusL(maintainerTF, "Maintainer name");
@@ -183,7 +199,7 @@ public class Frame extends JFrame {
 		maintainerTF.setToolTipText("MhmdSAbdlh");
 		maintainerTF.setFont(myFontXS);
 		maintainerTF.setHorizontalAlignment(0);
-		maintainerTF.setBounds(1000, 610, 200, 50);
+		maintainerTF.setBounds(970, 630, 200, 50);
 		panel.add(maintainerTF);
 
 		/* Site */
@@ -198,7 +214,7 @@ public class Frame extends JFrame {
 		site1TF.setToolTipText("http://mhmdsabdlh.github.io");
 		site1TF.setFont(myFontXS);
 		site1TF.setHorizontalAlignment(0);
-		site1TF.setBounds(1000, 720, 200, 50);
+		site1TF.setBounds(970, 720, 200, 50);
 		panel.add(site1TF);
 		/* Site2 */
 		JLabel site2 = new JLabel("TWITTER(X)");
@@ -209,10 +225,10 @@ public class Frame extends JFrame {
 		JTextField site2TF = new RoundJTextField(500);
 		FocusL(site2TF, "URL");
 		site2TF.setText("URL");
-		site2TF.setToolTipText("http://twitter.com/mhmdsabdlh");
+		site2TF.setToolTipText("mhmdsabdlh");
 		site2TF.setFont(myFontXS);
 		site2TF.setHorizontalAlignment(0);
-		site2TF.setBounds(1000, 775, 200, 50);
+		site2TF.setBounds(970, 775, 200, 50);
 		panel.add(site2TF);
 		/* Site3 */
 		JLabel site3 = new JLabel("GITHUB");
@@ -223,10 +239,10 @@ public class Frame extends JFrame {
 		JTextField site3TF = new RoundJTextField(500);
 		FocusL(site3TF, "URL");
 		site3TF.setText("URL");
-		site3TF.setToolTipText("http://facebook.com/mhmdsabdlh");
+		site3TF.setToolTipText("mhmdsabdlh");
 		site3TF.setFont(myFontXS);
 		site3TF.setHorizontalAlignment(0);
-		site3TF.setBounds(1000, 830, 200, 50);
+		site3TF.setBounds(970, 830, 200, 50);
 		panel.add(site3TF);
 		/* Hide by default */
 		site1.hide();
@@ -438,11 +454,24 @@ public class Frame extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-					packageAuthorTF.setNextFocusableComponent(maintainerTF);
+					packageAuthorTF.setNextFocusableComponent(compatibilityTF);
 					packageAuthorTF.nextFocus();
 				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 					packageAuthorTF.setNextFocusableComponent(priceTF);
 					packageAuthorTF.nextFocus();
+				}
+			}
+		});
+		compatibilityTF.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					compatibilityTF.setNextFocusableComponent(maintainerTF);
+					compatibilityTF.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					compatibilityTF.setNextFocusableComponent(packageAuthorTF);
+					compatibilityTF.nextFocus();
 				}
 			}
 		});
@@ -454,7 +483,7 @@ public class Frame extends JFrame {
 					maintainerTF.setNextFocusableComponent(versionFirst);
 					maintainerTF.nextFocus();
 				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-					maintainerTF.setNextFocusableComponent(packageAuthorTF);
+					maintainerTF.setNextFocusableComponent(compatibilityTF);
 					maintainerTF.nextFocus();
 				}
 			}
@@ -551,9 +580,9 @@ public class Frame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				json(headerTF, screenshotTF, longDescTF, versionTF, priceTF, maintainerTF, packageAuthorTF, siteOnOff,
-						site1TF, site2TF, site3TF, versionFirst, versionSecond, versionThird, changelogFirst,
-						changelogSecond, changelogThird);
+				json(headerTF, screenshotTF, longDescTF, versionTF, priceTF, maintainerTF, packageAuthorTF,
+						compatibilityTF, siteOnOff, site1TF, site2TF, site3TF, versionFirst, versionSecond,
+						versionThird, changelogFirst, changelogSecond, changelogThird);
 			}
 		});
 		generate.addMouseListener(new MouseAdapter() {
@@ -711,14 +740,16 @@ public class Frame extends JFrame {
 	}
 
 	private void json(JTextField header, JTextField screenshot, JTextArea long_desc, JTextField version,
-			JTextField priceTF, JTextField maintener, JTextField author, JToggleButton siteOnOff, JTextField site1,
-			JTextField site2, JTextField site3, JTextField version1, JTextField version2, JTextField version3,
-			JTextArea changelog1, JTextArea changelog2, JTextArea changelog3) {
+			JTextField priceTF, JTextField maintener, JTextField author, JTextField compatibility,
+			JToggleButton siteOnOff, JTextField site1, JTextField site2, JTextField site3, JTextField version1,
+			JTextField version2, JTextField version3, JTextArea changelog1, JTextArea changelog2,
+			JTextArea changelog3) {
 
 		if (long_desc.getText().isBlank() || version.getText().isBlank()
 				|| version.getText().equalsIgnoreCase("Version number") || priceTF.getText().isBlank()
 				|| priceTF.getText().equalsIgnoreCase("Price") || author.getText().isBlank()
-				|| author.getText().equalsIgnoreCase("Author name")) {
+				|| author.getText().equalsIgnoreCase("Author name") || compatibility.getText().isBlank()
+				|| compatibility.getText().equalsIgnoreCase("Compatibility")) {
 			Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, 2000,
 					"YOU NEED TO TYPE IN THE MANDATORY CASES!");
 			if (long_desc.getText().isBlank()) {
@@ -733,6 +764,9 @@ public class Frame extends JFrame {
 			} else if (author.getText().isBlank() || author.getText().equalsIgnoreCase("Author name")) {
 				fadeColor(author, blueC, Color.RED, 600);
 				fadeColor(author, Color.RED, blueC, 600);
+			} else if (compatibility.getText().isBlank() || compatibility.getText().equalsIgnoreCase("Compatibility")) {
+				fadeColor(compatibility, blueC, Color.RED, 600);
+				fadeColor(compatibility, Color.RED, blueC, 600);
 			}
 		} else {
 			JLabel json = new JLabel();
@@ -802,6 +836,14 @@ public class Frame extends JFrame {
 									+ "\",\r\n" + "                    \"class\": \"DepictionTableTextView\",\r\n"
 									+ "                    \"title\": \"Maintainer\"\r\n" + "                },\r\n";
 
+			/* Compatibility */
+			String compatibilityText = (compatibility.getText().isBlank()
+					|| compatibility.getText().equalsIgnoreCase("Compatibility"))
+							? ""
+							: "                {\r\n" + "                    \"text\": \"" + compatibility.getText()
+									+ "\",\r\n" + "                    \"class\": \"DepictionTableTextView\",\r\n"
+									+ "                    \"title\": \"compatibility\"\r\n" + "                },\r\n";
+
 			/* Footer */
 			String footerText = (siteOnOff.isSelected()
 					|| ((site1.getText().isBlank() || site1.getText().equalsIgnoreCase("URL"))
@@ -834,7 +876,7 @@ public class Frame extends JFrame {
 															+ "							\"class\": \"DepictionTableButtonView\",\r\n"
 															+ "							\"title\": \"Twitter(X)\",\r\n"
 															+ "							\"action\": \""
-															+ site2.getText() + "\",\r\n"
+															+ "http://x.com/" + site2.getText() + "\",\r\n"
 															+ "							\"openExternal\": false\r\n"
 															+ "						}"
 															+ ((site3.getText().isBlank()
@@ -844,9 +886,9 @@ public class Frame extends JFrame {
 													? ""
 													: "						{\r\n"
 															+ "							\"class\": \"DepictionTableButtonView\",\r\n"
-															+ "							\"title\": \"Github Repos\",\r\n"
+															+ "							\"title\": \"Github\",\r\n"
 															+ "							\"action\": \""
-															+ site3.getText() + "\",\r\n"
+															+ "http://github.com/" + site3.getText() + "\",\r\n"
 															+ "							\"openExternal\": false\r\n"
 															+ "						}")
 											+ "\r\n" + "					]\r\n" + "				},\r\n"
@@ -897,8 +939,8 @@ public class Frame extends JFrame {
 					+ "\",\r\n" + "    \"class\": \"DepictionTabView\",\r\n" + "    \"tintColor\": \"#0657bb\",\r\n"
 					+ "    \"tabs\": [\r\n" + "        {\r\n" + "            \"views\": [\r\n"
 					+ (screenshotosList.isEmpty() ? "" : screenString) + "                {\r\n" + longText
-					+ versionText + dateText + priceText + autherText + maintainerText + "                {\r\n"
-					+ "                    \"spacing\": 8,\r\n"
+					+ versionText + dateText + priceText + autherText + compatibilityText + maintainerText
+					+ "                {\r\n" + "                    \"spacing\": 8,\r\n"
 					+ "                    \"class\": \"DepictionSpacerView\"\r\n" + "                }" + footerText
 					+ "\r\n" + "            ],\r\n" + "            \"class\": \"DepictionStackView\",\r\n"
 					+ "            \"tabname\": \"Details\"\r\n" + "        }" + changelogText + "    ]\r\n" + "}");
