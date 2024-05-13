@@ -53,7 +53,7 @@ public class Frame extends JFrame {
 		this.setAlwaysOnTop(false);
 		this.setSize(width, height);
 		this.setResizable(false);
-		this.setTitle("Sileo 2.0");
+		this.setTitle("Sileo 2.5");
 		this.getContentPane().setBackground(blueC);
 		this.setIconImage(new ImageIcon(header).getImage());
 
@@ -135,7 +135,7 @@ public class Frame extends JFrame {
 		JLabel versionN = new JLabel("VERSION*");
 		versionN.setFont(myFontS);
 		versionN.setForeground(Color.white);
-		versionN.setBounds(800, 350, versionN.getPreferredSize().width, 50);
+		versionN.setBounds(800, 300, versionN.getPreferredSize().width, 50);
 		panel.add(versionN);
 		JTextField versionTF = new RoundJTextField(500);
 		FocusL(versionTF, "Version number");
@@ -143,13 +143,13 @@ public class Frame extends JFrame {
 		versionTF.setToolTipText("1.0.0");
 		versionTF.setFont(myFontXS);
 		versionTF.setHorizontalAlignment(0);
-		versionTF.setBounds(970, 350, 200, 50);
+		versionTF.setBounds(970, 300, 200, 50);
 		panel.add(versionTF);
 		/* Price */
 		JLabel priceL = new JLabel("PRICE*");
 		priceL.setFont(myFontS);
 		priceL.setForeground(Color.white);
-		priceL.setBounds(800, 420, priceL.getPreferredSize().width, 50);
+		priceL.setBounds(800, 370, priceL.getPreferredSize().width, 50);
 		panel.add(priceL);
 		JTextField priceTF = new RoundJTextField(500);
 		FocusL(priceTF, "Price");
@@ -157,13 +157,13 @@ public class Frame extends JFrame {
 		priceTF.setToolTipText("U$5");
 		priceTF.setFont(myFontXS);
 		priceTF.setHorizontalAlignment(0);
-		priceTF.setBounds(970, 420, 200, 50);
+		priceTF.setBounds(970, 370, 200, 50);
 		panel.add(priceTF);
 		/* Author */
 		JLabel packageAuthor = new JLabel("AUTHOR*");
 		packageAuthor.setFont(myFontS);
 		packageAuthor.setForeground(Color.white);
-		packageAuthor.setBounds(800, 490, packageAuthor.getPreferredSize().width, 50);
+		packageAuthor.setBounds(800, 440, packageAuthor.getPreferredSize().width, 50);
 		panel.add(packageAuthor);
 		JTextField packageAuthorTF = new RoundJTextField(500);
 		FocusL(packageAuthorTF, "Author name");
@@ -171,13 +171,13 @@ public class Frame extends JFrame {
 		packageAuthorTF.setToolTipText("Mhmd Abdlh");
 		packageAuthorTF.setFont(myFontXS);
 		packageAuthorTF.setHorizontalAlignment(0);
-		packageAuthorTF.setBounds(970, 490, 200, 50);
+		packageAuthorTF.setBounds(970, 440, 200, 50);
 		panel.add(packageAuthorTF);
 		/* Compatibility */
 		JLabel compatibility = new JLabel("COMPATIBILITY*");
 		compatibility.setFont(myFontS);
 		compatibility.setForeground(Color.white);
-		compatibility.setBounds(800, 560, compatibility.getPreferredSize().width, 50);
+		compatibility.setBounds(800, 510, compatibility.getPreferredSize().width, 50);
 		panel.add(compatibility);
 		JTextField compatibilityTF = new RoundJTextField(500);
 		FocusL(compatibilityTF, "Compatibility");
@@ -185,13 +185,13 @@ public class Frame extends JFrame {
 		compatibilityTF.setToolTipText("14.0 - 17.0");
 		compatibilityTF.setFont(myFontXS);
 		compatibilityTF.setHorizontalAlignment(0);
-		compatibilityTF.setBounds(970, 560, 200, 50);
+		compatibilityTF.setBounds(970, 510, 200, 50);
 		panel.add(compatibilityTF);
 		/* Maintainer */
 		JLabel maintenerL = new JLabel("MAINTAINER");
 		maintenerL.setFont(myFontS);
 		maintenerL.setForeground(Color.white);
-		maintenerL.setBounds(800, 630, maintenerL.getPreferredSize().width, 50);
+		maintenerL.setBounds(800, 580, maintenerL.getPreferredSize().width, 50);
 		panel.add(maintenerL);
 		JTextField maintainerTF = new RoundJTextField(500);
 		FocusL(maintainerTF, "Maintainer name");
@@ -199,8 +199,22 @@ public class Frame extends JFrame {
 		maintainerTF.setToolTipText("MhmdSAbdlh");
 		maintainerTF.setFont(myFontXS);
 		maintainerTF.setHorizontalAlignment(0);
-		maintainerTF.setBounds(970, 630, 200, 50);
+		maintainerTF.setBounds(970, 580, 200, 50);
 		panel.add(maintainerTF);
+		/* Size */
+		JLabel sizeL = new JLabel("SIZE");
+		sizeL.setFont(myFontS);
+		sizeL.setForeground(Color.white);
+		sizeL.setBounds(800, 650, sizeL.getPreferredSize().width, 50);
+		panel.add(sizeL);
+		JTextField sizeTF = new RoundJTextField(500);
+		FocusL(sizeTF, "Size");
+		sizeTF.setText("Size");
+		sizeTF.setToolTipText("123 KB");
+		sizeTF.setFont(myFontXS);
+		sizeTF.setHorizontalAlignment(0);
+		sizeTF.setBounds(970, 650, 200, 50);
+		panel.add(sizeTF);
 
 		/* Site */
 		JLabel site1 = new JLabel("MY WEBSITE");
@@ -231,7 +245,7 @@ public class Frame extends JFrame {
 		site2TF.setBounds(970, 775, 200, 50);
 		panel.add(site2TF);
 		/* Site3 */
-		JLabel site3 = new JLabel("GITHUB");
+		JLabel site3 = new JLabel("DONATE");
 		site3.setFont(myFontS);
 		site3.setForeground(Color.white);
 		site3.setBounds(800, 830, site3.getPreferredSize().width, 50);
@@ -480,11 +494,24 @@ public class Frame extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-					maintainerTF.setNextFocusableComponent(versionFirst);
+					maintainerTF.setNextFocusableComponent(sizeTF);
 					maintainerTF.nextFocus();
 				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 					maintainerTF.setNextFocusableComponent(compatibilityTF);
 					maintainerTF.nextFocus();
+				}
+			}
+		});
+		sizeTF.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					sizeTF.setNextFocusableComponent(versionFirst);
+					sizeTF.nextFocus();
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+					sizeTF.setNextFocusableComponent(maintainerTF);
+					sizeTF.nextFocus();
 				}
 			}
 		});
@@ -497,7 +524,7 @@ public class Frame extends JFrame {
 					versionFirst.setNextFocusableComponent(changelogFirst);
 					versionFirst.nextFocus();
 				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-					versionFirst.setNextFocusableComponent(maintainerTF);
+					versionFirst.setNextFocusableComponent(sizeTF);
 					versionFirst.nextFocus();
 				}
 			}
@@ -580,7 +607,7 @@ public class Frame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				json(headerTF, screenshotTF, longDescTF, versionTF, priceTF, maintainerTF, packageAuthorTF,
+				json(headerTF, screenshotTF, longDescTF, versionTF, priceTF, maintainerTF, sizeTF, packageAuthorTF,
 						compatibilityTF, siteOnOff, site1TF, site2TF, site3TF, versionFirst, versionSecond,
 						versionThird, changelogFirst, changelogSecond, changelogThird);
 			}
@@ -740,7 +767,7 @@ public class Frame extends JFrame {
 	}
 
 	private void json(JTextField header, JTextField screenshot, JTextArea long_desc, JTextField version,
-			JTextField priceTF, JTextField maintener, JTextField author, JTextField compatibility,
+			JTextField priceTF, JTextField maintener, JTextField size, JTextField author, JTextField compatibility,
 			JToggleButton siteOnOff, JTextField site1, JTextField site2, JTextField site3, JTextField version1,
 			JTextField version2, JTextField version3, JTextArea changelog1, JTextArea changelog2,
 			JTextArea changelog3) {
@@ -836,6 +863,12 @@ public class Frame extends JFrame {
 									+ "\",\r\n" + "                    \"class\": \"DepictionTableTextView\",\r\n"
 									+ "                    \"title\": \"Maintainer\"\r\n" + "                },\r\n";
 
+			/* Size */
+			String sizeText = (size.getText().isBlank() || size.getText().equalsIgnoreCase("Size")) ? ""
+					: "                {\r\n" + "                    \"text\": \"" + size.getText().toUpperCase()
+							+ "\",\r\n" + "                    \"class\": \"DepictionTableTextView\",\r\n"
+							+ "                    \"title\": \"Size\"\r\n" + "                },\r\n";
+
 			/* Compatibility */
 			String compatibilityText = (compatibility.getText().isBlank()
 					|| compatibility.getText().equalsIgnoreCase("Compatibility"))
@@ -886,9 +919,9 @@ public class Frame extends JFrame {
 													? ""
 													: "						{\r\n"
 															+ "							\"class\": \"DepictionTableButtonView\",\r\n"
-															+ "							\"title\": \"Github\",\r\n"
+															+ "							\"title\": \"Paypal\",\r\n"
 															+ "							\"action\": \""
-															+ "http://github.com/" + site3.getText() + "\",\r\n"
+															+ "http://paypal.me/" + site3.getText() + "\",\r\n"
 															+ "							\"openExternal\": false\r\n"
 															+ "						}")
 											+ "\r\n" + "					]\r\n" + "				},\r\n"
@@ -939,7 +972,7 @@ public class Frame extends JFrame {
 					+ "\",\r\n" + "    \"class\": \"DepictionTabView\",\r\n" + "    \"tintColor\": \"#0657bb\",\r\n"
 					+ "    \"tabs\": [\r\n" + "        {\r\n" + "            \"views\": [\r\n"
 					+ (screenshotosList.isEmpty() ? "" : screenString) + "                {\r\n" + longText
-					+ versionText + dateText + priceText + autherText + compatibilityText + maintainerText
+					+ versionText + dateText + priceText + autherText + compatibilityText + maintainerText + sizeText
 					+ "                {\r\n" + "                    \"spacing\": 8,\r\n"
 					+ "                    \"class\": \"DepictionSpacerView\"\r\n" + "                }" + footerText
 					+ "\r\n" + "            ],\r\n" + "            \"class\": \"DepictionStackView\",\r\n"
